@@ -141,11 +141,16 @@ int main(int argc, char *argv[]) {
 
     static struct option opts[] = {
         { "index", required_argument, 0, 'x' },
+        { "help",  no_argument,       0, 'h' },
         { 0, 0, 0, 0 }
     };
     int c;
-    while ((c = getopt_long(argc, argv, "", opts, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "h", opts, NULL)) != -1) {
         if (c == 'x') strncpy(index_dir, optarg, sizeof(index_dir) - 1);
+        if (c == 'h') {
+            fprintf(stderr, "USAGE: ./query --index <dir> <term1> [term2 ...]\n");
+            return 0;
+        }
     }
     /* Remaining non-option arguments are query terms */
     term_start = optind;

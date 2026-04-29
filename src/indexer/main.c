@@ -98,14 +98,19 @@ int main(int argc, char *argv[]) {
     char out_dir[512]  = "data/index";
 
     static struct option opts[] = {
-        { "ipc", required_argument, 0, 'i' },
-        { "out", required_argument, 0, 'o' },
+        { "ipc",  required_argument, 0, 'i' },
+        { "out",  required_argument, 0, 'o' },
+        { "help", no_argument,       0, 'h' },
         { 0, 0, 0, 0 }
     };
     int c;
-    while ((c = getopt_long(argc, argv, "", opts, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "h", opts, NULL)) != -1) {
         if (c == 'i') strncpy(ipc_path, optarg, sizeof(ipc_path) - 1);
         if (c == 'o') strncpy(out_dir,  optarg, sizeof(out_dir)  - 1);
+        if (c == 'h') {
+            fprintf(stderr, "USAGE: ./indexer --ipc <socket-path> --out <dir>\n");
+            exit(0);
+        }
     }
 
     log_init(NULL);

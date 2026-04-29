@@ -53,6 +53,7 @@ run: all
 	./indexer --ipc /tmp/crawl.sock --out data/index &
 	sleep 1
 	./crawler --seed https://en.wikipedia.org/wiki/Linux \
-	          --max-depth 2 --max-pages 10 -t 4 \
+	          --max-depth 1 --max-pages 50 -t 8 \
 	          --out data --ipc /tmp/crawl.sock
+	sleep 3
 	./query --index data/index linux kernel threads

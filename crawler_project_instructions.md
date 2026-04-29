@@ -1,23 +1,10 @@
-# Multithreaded Web Crawler Pipeline — Detailed Step-by-Step Instructions
-
----
-
-## Phase 1: Project Setup & Scaffolding
-
----
-
-### Step 1: Set Up Directory Structure
-
 Create the following directory layout from your project root. Every source file you write will live inside one of these folders.
-
 ```bash
 mkdir -p project/{src/{crawler,indexer,query,common},include,data/{pages,index}}
 cd project
 touch Makefile README.md
 ```
-
 **What each directory is for:**
-
 - `src/crawler/` — all `.c` files belonging to the crawler process
 - `src/indexer/` — all `.c` files belonging to the indexer process
 - `src/query/` — all `.c` files belonging to the query tool
@@ -25,7 +12,6 @@ touch Makefile README.md
 - `include/` — shared `.h` header files
 - `data/pages/` — where the crawler will save downloaded HTML files at runtime
 - `data/index/` — where the indexer will write its on-disk index files at runtime
-
 Create placeholder source files so the Makefile has something to compile against immediately:
 
 ```bash
@@ -39,8 +25,6 @@ touch src/query/main.c
 touch src/common/log.c src/common/log.h
 touch src/common/ipc.h
 ```
-
----
 
 ### Step 2: Write the Makefile
 
@@ -1341,8 +1325,7 @@ Go through this before submitting:
 
 ```
 main()
-  → parse_args()
-  → connect_to_indexer(ipc_path)         # UNIX socket connect
+  ect_to_indexer(ipc_path)         # UNIX socket connect
   → visited_check_and_insert(seed_url)   # Mark seed as visited
   → queue_push(url_queue, seed_url)      # Seed the queue
   → threadpool_create(N, args)           # Spawn N worker threads
